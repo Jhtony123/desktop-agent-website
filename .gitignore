@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# 编辑器
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 本地开发产物
+preview/
+*.log
+node_modules/
+
+# 本地临时服务
+.server.pid
+
+# 设计 token 留档（源产品内部文件，不随站点公开）
+assets/tokens.css.ref
+
+# 部署脚本与服务器信息（含主机路径，不入公开仓库）
+deploy/

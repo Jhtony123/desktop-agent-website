@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desktop Agent — 桌面智能体平台 · AI 即自动化工程师</title>
+<meta name="description" content="Desktop Agent 是面向业务人员的桌面智能体平台。用自然语言与多模态输入表达需求，AI 扮演自动化工程师，按需调用浏览器、CLI、办公技能构建可执行工作流。">
+<meta name="theme-color" content="#050506">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.className += " js";</script>
+<meta property="og:title" content="Desktop Agent — 桌面智能体平台">
+<meta property="og:description" content="用自然语言驱动浏览器、脚本与办公技能，AI 扮演自动化工程师，边做边调，产出可复用工作流。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/app-screenshot.png">
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true">
+  <div class="bg-fx__glow bg-fx__glow--acid"></div>
+  <div class="bg-fx__glow bg-fx__glow--cyan"></div>
+  <div class="bg-fx__glow bg-fx__glow--violet"></div>
+  <div class="bg-fx__grid"></div>
+</div>
+
+<!-- ============================ 导航 ============================ -->
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="#top" aria-label="Desktop Agent 首页">
+      <span class="brand__mark">M</span>
+      <span class="brand__text">
+        <span class="brand__name">Agent</span>
+        <span class="brand__sub">Desktop · v1.7.998</span>
+      </span>
+    </a>
+    <nav class="nav__links" id="navLinks" aria-label="主导航">
+      <a class="nav__link" href="#capability">能力</a>
+      <a class="nav__link" href="#arch">架构</a>
+      <a class="nav__link" href="#harness">Harness</a>
+      <a class="nav__link" href="#models">模型</a>
+      <a class="nav__link" href="#features">亮点</a>
+      <a class="nav__link" href="#scenes">场景</a>
+      <a class="nav__link" href="#download">下载</a>
+      <a class="nav__cta" href="#download">获取 Desktop Agent</a>
+    </nav>
+    <button class="nav__burger" id="navBurger" aria-label="展开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============================ Hero ============================ -->
+<section class="hero">
+  <div class="wrap">
+
+    <div class="badge rv">
+      <span class="badge__dot">M</span>
+      <span>基于 AgentScope 2.0.3 内核<span class="sep">·</span><b>Tauri 2</b> 桌面壳<span class="sep">·</span>本地优先</span>
+    </div>
+
+    <h1 class="rv">用一句话，<br>让 AI 成为你的<span class="acid">自动化工程师</span></h1>
+
+    <p class="hero__lead rv">
+      Desktop Agent 是面向业务人员的桌面智能体平台。你用自然语言描述需求，也可以附上截图、录屏或页面元素，
+      AI 会理解意图、编排工具、边做边调，最后把整个过程沉淀为<span class="nw">可复用</span>的脚本与工作流。
+    </p>
+
+    <p class="hero__note rv">
+      每一步都看得见，随时能打断、能纠偏 —— 不是黑箱代跑，而是一个可以协作的工程伙伴。
+    </p>
+
+    <div class="hero__actions rv">
+      <a class="btn btn--primary" href="#download">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="m6.5 11 5.5 5.5L17.5 11"/><path d="M4 20h16"/></svg>
+        获取 Desktop Agent
+      </a>
+      <a class="btn" href="#capability">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        看看它能做什么
+      </a>
+    </div>
+
+    <div class="hero__meta rv">
+      <span><i></i>macOS · Windows</span>
+      <span><i></i>Sidecar 仅监听 127.0.0.1</span>
+      <span><i></i>多模型可插拔</span>
+      <span><i></i>数据留在本机</span>
+    </div>
+
+    <div class="shot rv">
+      <div class="shot__glow"></div>
+      <figure class="shot__frame" style="margin:0">
+        <div class="shot__bar">
+          <span class="shot__dots"><i></i><i></i><i></i></span>
+          <span class="shot__title">Desktop Agent — 工作区</span>
+          <span class="shot__path">~/Library/Application Support/DesktopAgent</span>
+        </div>
+        <img class="shot__img" src="assets/app-screenshot.png" alt="Desktop Agent 应用界面：左侧导航栏含工作区、文件、报告、脚本库、插件、专家组、子代理、技能管理、工作流、知识库；右侧为对话工作区，展示 SSH 运维任务的验证结果表格与可复制代码块" loading="eager" width="2972" height="1892">
+      </figure>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ 能力 Bento ============================ -->
+<section class="sec" id="capability">
+  <div class="wrap">
+
+    <div class="sec__head sec__head--center rv">
+      <span class="eyebrow">Capabilities</span>
+      <h2>一个内核，六种作业面</h2>
+      <p class="sec__desc">
+        工具与技能分离，按需渐进加载。同一个对话入口，覆盖浏览器自动化、脚本沉淀、多代理协作与知识积累。
+      </p>
+    </div>
+
+    <div class="bento">
+
+      <!-- 代码演示（宽） -->
+      <article class="cell cell--wide cell--code rv">
+        <div class="cell__ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6"/><path d="m16 6 6 6-6 6"/></svg>
+        </div>
+        <h3>自然语言 → 可执行脚本</h3>
+        <p>浏览器场景默认产出 <code>playwright-cli</code> 命令序列，复杂逻辑落 Python。跑通即入库，下次直接调用。</p>
+        <div class="term">
+          <div class="term__bar"><i></i><i></i><i></i><span>workspace · zsh</span></div>
+          <div class="term__body" id="termDemo">
+            <div><span class="t-p">❯</span> <span class="t-o" id="typeTarget"></span><span class="caret"></span></div>
+            <div class="t-c" id="termOut1"></div>
+            <div class="t-c" id="termOut2"></div>
+            <div class="t-c" id="termOut3"></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 浏览器内核 -->
+      <article class="cell cell--wide rv">
+        <div class="cell__ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"/></svg>
+        </div>
+        <h3>浏览器自动化内核</h3>
+        <p>
+          有头浏览器全程可见，支持登录态缓存、多页采集与反爬 fetch。过程可标注纠偏 ——
+          看到它点错了，直接说，它当场改。
+        </p>
+        <span class="cell__tag">playwright-cli · scrapling · 会话池隔离</span>
+      </article>
+
+      <!-- 技能渐进加载 -->
+      <article class="cell rv">
+        <div class="cell__ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="m3 7 9 5 9-5"/><path d="M12 12v10"/></svg>
+        </div>
+        <h3>技能分层 L0–L3</h3>
+        <p>常驻工具 → 技能索引 → 入口文档 → 激活工具组。用到才加载，上下文不被撑爆。</p>
+        <span class="cell__tag">skill_find 唯一入口 · 热更新</span>
+      </article>
+
+      <!-- 子代理 -->
+      <article class="cell rv">
+        <div class="cell__ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.6"/><circle cx="5" cy="19" r="2.6"/><circle cx="19" cy="19" r="2.6"/><path d="M12 7.6v4.2"/><path d="M12 11.8 5.8 16.6"/><path d="m12 11.8 6.2 4.8"/></svg>
+        </div>
+        <h3>子代理并行派发</h3>
+        <p>可并行子目标画成 fork-join DAG，多个 worker 同时跑，各自带独立工作区与验收。</p>
+        <span class="cell__tag">DAG · 专家组 · 验收回路</span>
+      </article>
+
+      <!-- 知识库 -->
+      <article class="cell rv">
+        <div class="cell__ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H19v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 1 5.5 18H19v3H5.5A1.5 1.5 0 0 1 4 19.5z"/></svg>
+        </div>
+        <h3>卡帕西知识库</h3>
+        <p>YAML 域对象结构化沉淀网站、品牌、取数口径。AI 可读写，跨会话记得住上次的结论。</p>
+        <span class="cell__tag">YAML 域 · BM25 + 语义检索</span>
+      </article>
+
+      <!-- 脚本库与定时 -->
+      <article class="cell rv">
+        <div class="cell__ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+        </div>
+        <h3>脚本库 · 定时任务</h3>
+        <p>跑通的流程固化成任务，挂 cron 自动执行。人和 AI 共同维护同一份脚本资产。</p>
+        <span class="cell__tag">task_executor · CPU 动态限流</span>
+      </article>
+
+      <!-- 输出物 -->
+      <article class="cell rv">
+        <div class="cell__ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6"/><path d="M9 18h4"/></svg>
+        </div>
+        <h3>输出物与交付</h3>
+        <p>报告、表格、图片、脚本自动归类进工作区，抽屉里一键取用，不散落在聊天流里。</p>
+        <span class="cell__tag">Canvas 报告 · inbox 归档</span>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 数据条 ============================ -->
+<section class="sec--tight">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat rv">
+        <div class="stat__v" data-count="70">0<small>%</small></div>
+        <div class="stat__l">复用 AgentScope 内置能力</div>
+        <div class="stat__d">自建集中在存储 / 浏览器 / KB / UI</div>
+      </div>
+      <div class="stat rv">
+        <div class="stat__v" data-count="4">0<small> 层</small></div>
+        <div class="stat__l">上下文压缩机制</div>
+        <div class="stat__d">L0 分页 · L1 pin · L2 compact · L3 offload</div>
+      </div>
+      <div class="stat rv">
+        <div class="stat__v" data-count="3">0<small> 类</small></div>
+        <div class="stat__l">模型槽位可插拔</div>
+        <div class="stat__d">主脑 · 视觉 · 兜底，retry + fallback</div>
+      </div>
+      <div class="stat rv">
+        <div class="stat__v" data-count="0">0<small> 行</small></div>
+        <div class="stat__l">数据上云</div>
+        <div class="stat__d">Sidecar 仅绑 127.0.0.1，SQLite 落本机</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 架构分层 ============================ -->
+<section class="sec" id="arch">
+  <div class="wrap">
+
+    <div class="sec__head rv">
+      <span class="eyebrow">Architecture</span>
+      <h2>五层结构，一条契约</h2>
+      <p class="sec__desc">
+        桌面壳与运行时之间只走 localhost 的 REST + SSE。每层职责单一，替换任意一层都不牵动全局。
+      </p>
+    </div>
+
+    <div class="stack">
+
+      <article class="layer rv">
+        <div class="layer__id">L5<small>Shell</small></div>
+        <div class="layer__body">
+          <h3>Desktop Shell — Tauri 2 + React</h3>
+          <p>Chat、任务与脚本库、技能管理、知识库、输出物、日志、设置。高信息密度 Bento 布局，Cyber Dark 视觉。</p>
+          <div class="chips">
+            <span class="chip">Tauri 2</span><span class="chip">React + TypeScript</span>
+            <span class="chip">Vite</span><span class="chip">Phosphor Icons</span><span class="chip">SSE 流式渲染</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="flow-arrow rv">│&nbsp;&nbsp;REST + SSE · localhost only&nbsp;&nbsp;▼</div>
+
+      <article class="layer rv">
+        <div class="layer__id">L4<small>Runtime</small></div>
+        <div class="layer__body">
+          <h3>Python Sidecar — 唯一 Agent 运行时</h3>
+          <p>FastAPI 侧车，用 <code>create_app(...)</code> 装配，不自建路由层。只绑 127.0.0.1，不对外暴露。</p>
+          <div class="chips">
+            <span class="chip">FastAPI</span><span class="chip">SqliteStorage</span>
+            <span class="chip">InMemoryMessageBus</span><span class="chip">stream_journal</span><span class="chip">after_seq replay</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="flow-arrow rv">▼</div>
+
+      <article class="layer rv">
+        <div class="layer__id">L3<small>Core</small></div>
+        <div class="layer__body">
+          <h3>Agent Core — ReAct + 多模态 + skill_find</h3>
+          <p>
+            基于 AgentScope 2.0.3 的 <code>DesktopAgent</code>。多模型三槽位配置，
+            多模态吃截图与视频，技能按需渐进加载而非一次性灌满上下文。
+          </p>
+          <div class="chips">
+            <span class="chip">ReAct Agent</span><span class="chip">HITL 人在环</span>
+            <span class="chip">qwen-vl / omni</span><span class="chip">Toolkit + ToolGroup</span><span class="chip">Credential 凭证隔离</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="flow-arrow rv">▼</div>
+
+      <article class="layer rv">
+        <div class="layer__id">L2<small>Capability</small></div>
+        <div class="layer__body">
+          <h3>能力层 — 内置工具 / 技能 / 浏览器 / 脚本 / KB</h3>
+          <p>五条并行能力通道。默认非激活，用到才展开成真实工具；脚本与知识库形成可积累资产。</p>
+          <div class="chips">
+            <span class="chip">bash · read · write · grep</span><span class="chip">skills/ 种子 + 用户创建</span>
+            <span class="chip">Browser Kernel</span><span class="chip">Script Lib + Task</span><span class="chip">卡帕西 KB · YAML 域</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="flow-arrow rv">▼</div>
+
+      <article class="layer rv">
+        <div class="layer__id">L1<small>Infra</small></div>
+        <div class="layer__body">
+          <h3>基础设施 — 事件、存储与并发调度</h3>
+          <p>统一 SQLite 存储，事件持久化可重放。任务执行按 CPU 动态限流，浏览器会话池与 chat 隔离。</p>
+          <div class="chips">
+            <span class="chip">data/desktop.db</span><span class="chip">Events / SSE</span>
+            <span class="chip">task_executor</span><span class="chip">psutil CPU 动态并发</span><span class="chip">独立输出目录隔离</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 技能分层 ============================ -->
+<section class="sec--tight">
+  <div class="wrap">
+
+    <div class="sec__head rv">
+      <span class="eyebrow">Progressive Loading</span>
+      <h2>为什么技能要分四层</h2>
+      <p class="sec__desc">
+        把全部工具塞进上下文，等于每轮都在为用不到的能力付 token。分层加载让 Agent 只在需要时展开细节。
+      </p>
+    </div>
+
+    <div class="tbl-wrap rv">
+      <table>
+        <thead>
+          <tr><th style="width:130px">层级</th><th style="width:200px">内容</th><th>加载时机与代价</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lv">L0<small>常驻</small></td>
+            <td>系统工具 · FC schema</td>
+            <td>始终在上下文里。数量受控，只放真正高频的：文件、Shell、检索、计划、画布。</td>
+          </tr>
+          <tr>
+            <td class="lv">L1<small>索引</small></td>
+            <td><code>&lt;agent-skills&gt;</code> 技能目录</td>
+            <td>只有名字加一行用途。几十个字撑起整个能力地图，Agent 靠它判断该往哪层走。</td>
+          </tr>
+          <tr>
+            <td class="lv">L2<small>入口</small></td>
+            <td><code>skill_find read</code> → SKILL.md</td>
+            <td>命中意图才读入口文档。包含硬规则、陷阱清单与脚本资产表，是"先读文档再动手"的落点。</td>
+          </tr>
+          <tr>
+            <td class="lv">L3<small>展开</small></td>
+            <td><code>load</code> 参考 + <code>activate</code> 工具组</td>
+            <td>真正解锁业务工具与深度参考。不可逆操作前强制加载，避免在未激活工具上硬撞。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ Harness ============================ -->
+<section class="sec" id="harness">
+  <div class="wrap">
+
+    <div class="sec__head rv">
+      <span class="eyebrow">Harness</span>
+      <h2>横切运行时：让 Agent 不跑偏</h2>
+      <p class="sec__desc">
+        Harness 以中间件形式接入，不侵入业务逻辑。它管三件事：说清楚、别撞墙、装得下。
+      </p>
+    </div>
+
+    <div class="pillars">
+
+      <article class="pillar rv">
+        <span class="pillar__n">01 / PROMPT</span>
+        <h3>结构化系统提示</h3>
+        <p>信封式 Prompt 块 + 注册表，每轮由 <code>TurnContextBuilder</code> 按序装配，未完成代办自动回灌。</p>
+        <ul>
+          <li>soul.md 人格与硬约束</li>
+          <li>tool 字典 / skill 字典</li>
+          <li>plan_next · todo 提醒</li>
+          <li>prompt_key_registry</li>
+        </ul>
+      </article>
+
+      <article class="pillar rv">
+        <span class="pillar__n">02 / RECOVERY</span>
+        <h3>错误软介入</h3>
+        <p>工具连续失败、同参重试、明显停滞时，不硬撞也不静默放弃，而是注入引导让 Agent 换策略。</p>
+        <ul>
+          <li>react_checkpoint 失败计数</li>
+          <li>plan_next hint 重规划</li>
+          <li>max_turn 压力提示</li>
+          <li>COMPLIANCE_DENY 逃逸路径</li>
+        </ul>
+      </article>
+
+      <article class="pillar rv">
+        <span class="pillar__n">03 / CONTEXT</span>
+        <h3>多层上下文压缩</h3>
+        <p>长会话不靠截断续命。四级机制各管一段，大输出落盘后按需回读，而不是塞满窗口。</p>
+        <ul>
+          <li>L0 会话分页</li>
+          <li>L1 任务 pin</li>
+          <li>L2 工具回包 compact</li>
+          <li>L3 offload 落盘回读</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <!-- 缓存命中优化 -->
+    <div class="sec__head rv" style="margin-top:76px">
+      <span class="eyebrow">Prompt Cache</span>
+      <h2>为缓存命中而设计的提示词布局</h2>
+      <p class="sec__desc">
+        大模型厂商按前缀命中缓存计费与加速。若系统提示每轮都在变，前缀就得整段重建 ——
+        所以 Harness 把提示块按变动频率分成三类，只让该变的变。
+      </p>
+    </div>
+
+    <div class="cache-grid">
+
+      <div class="prefix rv">
+        <div class="prefix__head">Prompt 块分类 · 前缀从稳到动</div>
+
+        <div class="blk blk--stable">
+          <span class="blk__cls">stable</span>
+          <span class="blk__txt">
+            <b>跨会话恒定，构成可缓存前缀</b>
+            <span><code>soul.mindset</code> · <code>harness.tool_discipline</code> · <code>harness.runtime</code> · <code>skills.loaded</code> · <code>capabilities.loaded</code></span>
+          </span>
+          <span class="blk__tag">永不改字节</span>
+        </div>
+
+        <div class="blk blk--frozen">
+          <span class="blk__cls">turnFrozen</span>
+          <span class="blk__txt">
+            <b>回合内冻结，中途重放同一份快照</b>
+            <span><code>session.env</code> 时钟、规划器闪烁都不会重写前缀；新出现的 hint / memory / 清单只允许追加一次</span>
+          </span>
+          <span class="blk__tag">turn_open 快照</span>
+        </div>
+
+        <div class="blk blk--dyn">
+          <span class="blk__cls">hopDynamic</span>
+          <span class="blk__txt">
+            <b>每跳可变，排在末尾</b>
+            <span><code>session.file_working_set</code> · <code>task.workflow_draft.progress</code> —— 变动只影响后缀，前缀照常命中</span>
+          </span>
+          <span class="blk__tag">尾部可丢弃</span>
+        </div>
+
+      </div>
+
+      <div class="gauge rv">
+        <h4>为什么要这么排</h4>
+        <p>场景切换（chat ↔ execute）会让目录块增减。若把它们放进稳定前缀，每次切换都触发整段重建。</p>
+
+        <div class="bar">
+          <div class="bar__top"><span>未分类排列 · 会话均值</span><b data-pct="50">0%</b></div>
+          <div class="bar__track"><div class="bar__fill" data-pct="50"></div></div>
+        </div>
+
+        <div class="bar bar--good">
+          <div class="bar__top"><span>三类分块 · 稳态单次</span><b data-pct="89">0%</b></div>
+          <div class="bar__track"><div class="bar__fill" data-pct="89"></div></div>
+        </div>
+
+        <div class="gauge__note">
+          数据来自源码注释记录的实测：把易变块移出稳定前缀后，稳态单次命中率可达 89%+，
+          而混排时会话均值被拉低到 50% 附近。工具表面预算（tool surface budget）同理 —— 宁可裁剪，不整块删。
+        </div>
+      </div>
+
+    </div>
+
+    <div class="protos">
+      <article class="proto rv">
+        <span class="proto__v">Anthropic</span>
+        <h4>explicit markers</h4>
+        <p>显式 <code>cache_control</code> 标记缓存断点，稳定块进标记系统消息，一次性 hint 拖到真实消息之后。</p>
+      </article>
+      <article class="proto rv">
+        <span class="proto__v">DeepSeek</span>
+        <h4>append-only units</h4>
+        <p>只认完整单元追加。冻结块必须留在系统单元内，中途丢弃会导致「A+B 然后 A+C」双双失效。</p>
+      </article>
+      <article class="proto rv">
+        <span class="proto__v">百炼 / OpenAI 系</span>
+        <h4>implicit prefix</h4>
+        <p>按消息前缀隐式命中。仅极小白名单进标记消息，其余按稳定序排列，避免字典变更插在两个稳定块之间。</p>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ 模型 ============================ -->
+<section class="sec" id="models">
+  <div class="wrap">
+
+    <div class="sec__head rv">
+      <span class="eyebrow">Model Layer</span>
+      <h2>云端随意换，本地也能跑</h2>
+      <p class="sec__desc">
+        模型是可插拔配置，不是硬编码依赖。三类槽位各管一职，失败自动降级；
+        想完全离线，接本地推理服务即可，无需 API Key。
+      </p>
+    </div>
+
+    <div class="models">
+
+      <article class="mdl mdl--local rv">
+        <div class="mdl__top">
+          <div class="mdl__ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1.5v2.5M15 1.5v2.5M9 20v2.5M15 20v2.5M1.5 9H4M1.5 15H4M20 9h2.5M20 15h2.5"/></svg>
+          </div>
+          <div>
+            <h3>本地模型 · 零 Key</h3>
+            <p class="mdl__sub">ollama · llama_cpp · openai_compat</p>
+          </div>
+        </div>
+        <p>
+          内置无 Key 通道：识别到本地服务时跳过凭证校验，直接探活注册。
+          Ollama 默认指向 <code>127.0.0.1:11434</code>，llama.cpp 与任意 OpenAI 兼容端点填个 base_url 就能接。
+        </p>
+        <div class="chips">
+          <span class="chip">Ollama</span>
+          <span class="chip">llama.cpp / GGUF</span>
+          <span class="chip">OpenAI 兼容端点</span>
+          <span class="chip">OpenRouter</span>
+          <span class="chip">keyless 探活</span>
+        </div>
+        <p style="margin-top:16px;margin-bottom:0;font-size:12.5px;color:#6b7684">
+          自定义模型面板支持增删改；<code>model_catalog</code> 技能可让 AI 自己完成注册与连通性验证。
+        </p>
+      </article>
+
+      <article class="mdl rv">
+        <div class="mdl__top">
+          <div class="mdl__ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="4"/><path d="m4.9 4.9 2.9 2.9"/><path d="m16.2 16.2 2.9 2.9"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.9 19.1 2.9-2.9"/><path d="m16.2 7.8 2.9-2.9"/></svg>
+          </div>
+          <div>
+            <h3>三槽位分工</h3>
+            <p class="mdl__sub">primary · utility_mm · fallback</p>
+          </div>
+        </div>
+        <p>
+          主脑负责推理与工具调用，视觉槽专吃截图录屏，兜底槽在主链失败时接管 ——
+          三者独立配置，可以全是云端，也可以全在本地。
+        </p>
+        <div class="slots">
+          <div class="slot">
+            <span class="slot__k">主脑</span>
+            <span class="slot__v">推理 · 工具调用 · 长上下文 <small>（支持 reasoning 档位）</small></span>
+          </div>
+          <div class="slot">
+            <span class="slot__k">视觉</span>
+            <span class="slot__v">图片 / 音频 / 视频侧看 <small>（qwen-vl · omni）</small></span>
+          </div>
+          <div class="slot">
+            <span class="slot__k">兜底</span>
+            <span class="slot__v">retry + fallback 链 <small>主链异常时自动接管</small></span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 亮点功能 ============================ -->
+<section class="sec" id="features">
+  <div class="wrap">
+
+    <div class="sec__head rv">
+      <span class="eyebrow">Highlights</span>
+      <h2>四个让它长在手边的功能</h2>
+      <p class="sec__desc">
+        不只是个聊天窗口。它能主动找你、能被扩展、能自己按时跑，也能直接开口对话。
+      </p>
+    </div>
+
+    <div class="feats">
+
+      <article class="feat rv">
+        <div class="feat__top">
+          <div class="feat__ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 20.5l1.5-4.6A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/></svg>
+          </div>
+          <div>
+            <h3>微信通道</h3>
+            <p class="feat__k">integrations / weixin</p>
+          </div>
+        </div>
+        <p>人不在电脑前也能收结果、下指令。配对后长任务跑完直接推到微信，出门在外照样能催它干活。</p>
+        <ul>
+          <li><b>双向</b>：推送结果，也接收你发来的新指令</li>
+          <li><b>去重窗口</b>：同一事件不会重复轰炸</li>
+          <li><b>通道守卫</b>：配对状态与投递失败可查</li>
+          <li>与定时任务联动 —— <code>channel_deliver</code> 作为工作流最后一步</li>
+        </ul>
+      </article>
+
+      <article class="feat rv">
+        <div class="feat__top">
+          <div class="feat__ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7h5a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5"/><rect x="9" y="2.5" width="6" height="5" rx="1.5"/><path d="M12 11v6"/><path d="m9.5 14.5 2.5 2.5 2.5-2.5"/></svg>
+          </div>
+          <div>
+            <h3>插件系统</h3>
+            <p class="feat__k">extensions / 62 modules</p>
+          </div>
+        </div>
+        <p>把重复业务做成带界面的插件，钉在侧边栏常驻。脚手架生成、蓝图接入、校验、热重载一条龙。</p>
+        <ul>
+          <li><b>四种模板</b>：CLI 桥接 · 多表 · React Flow · 基础页</li>
+          <li><b>蓝图接入</b>：给个 HTTP / 浏览器 / 上传场景就能生成</li>
+          <li><b>热重载</b>：改完即生效，UI 与运行时可分别重载</li>
+          <li>登录态托管：认证面板 + 会话持久化，插件不必各自处理登录</li>
+        </ul>
+      </article>
+
+      <article class="feat rv">
+        <div class="feat__top">
+          <div class="feat__ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+          </div>
+          <div>
+            <h3>定时任务</h3>
+            <p class="feat__k">scheduler / APScheduler</p>
+          </div>
+        </div>
+        <p>跑通的流程固化成脚本，挂上 cron 就无人值守。巡检、报表、盯盘、备份，交给它按时做。</p>
+        <ul>
+          <li><b>两种触发</b>：cron 循环 · 一次性定点</li>
+          <li><b>两级调度</b>：RPA 脚本任务与 Workflow 工作流分开管</li>
+          <li><b>CPU 动态限流</b>：并发按机器负载自动收放</li>
+          <li>需要人确认时会 park 住等你，不会闷头做错</li>
+        </ul>
+      </article>
+
+      <article class="feat rv">
+        <div class="feat__top">
+          <div class="feat__ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/><path d="M8.5 21h7"/></svg>
+          </div>
+          <div>
+            <h3>实时语音模式</h3>
+            <p class="feat__k">S2S Realtime · WebSocket</p>
+          </div>
+        </div>
+        <p>端到端语音直连，不是「录完再转文字」。说话中途想改主意，直接打断它，它当场停下听你的。</p>
+        <ul>
+          <li><b>真端到端</b>：浏览器 PCM16 音频流 ↔ Omni 实时模型</li>
+          <li><b>Barge-in 打断</b>：随时插话，立刻终止当前生成</li>
+          <li><b>双路径</b>：实时 E2E 与传统 TTS 通道，按能力自动选</li>
+          <li>语音下也能出活：生成结果同步到可视化面板</li>
+        </ul>
+        <div class="wave" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 场景 ============================ -->
+<section class="sec--tight" id="scenes">
+  <div class="wrap">
+
+    <div class="sec__head rv">
+      <span class="eyebrow">In Practice</span>
+      <h2>实际长什么样</h2>
+      <p class="sec__desc">下面每一条都是真实会话里发生过的任务，不是演示脚本。</p>
+    </div>
+
+    <div class="scenes">
+
+      <article class="scene rv">
+        <div class="scene__q">连接一下我的服务器</div>
+        <h4>SSH 运维与加固</h4>
+        <p>读技能里实测过的连接契约，探端口、验认证、查资源，改 sshd 前必备份 + <code>sshd -t</code> + reload，失败自动回滚。</p>
+      </article>
+
+      <article class="scene rv">
+        <div class="scene__q">把这张截图里的表格导成 Excel</div>
+        <h4>多模态取数</h4>
+        <p>图片走同模型侧看识别结构，直接产出表格文件归入输出物抽屉，不再手工誊抄。</p>
+      </article>
+
+      <article class="scene rv">
+        <div class="scene__q">每天早上 9 点跑一次巡检发我微信</div>
+        <h4>定时任务 + 通道投递</h4>
+        <p>脚本固化入库，挂 cron 自动执行，结果经 <code>channel_deliver</code> 推到微信或桌面通知铃。</p>
+      </article>
+
+      <article class="scene rv">
+        <div class="scene__q">这个仓库的登录逻辑帮我评审一下</div>
+        <h4>代码探查与评审</h4>
+        <p>先读 codemap 索引定位注册点，再 Grep + Read 核实调用链，结论带文件行号证据，不凭记忆下判断。</p>
+      </article>
+
+      <article class="scene rv">
+        <div class="scene__q">把这 200 页 PDF 的要点做成报告</div>
+        <h4>长文档处理</h4>
+        <p>提取、分块、汇总，最终产出 Canvas 结构化报告或 HTML，聊天里只留一两句导读。</p>
+      </article>
+
+      <article class="scene rv">
+        <div class="scene__q">这几件事并行做，做完各自验收</div>
+        <h4>子代理派发</h4>
+        <p>可并行子目标画成 fork-join，多个 worker 同时开工，各自独立工作区，回收时逐项验收。</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 设计系统 ============================ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec__head rv">
+      <span class="eyebrow">Design Tokens</span>
+      <h2>Cyber Dark + Acid</h2>
+      <p class="sec__desc">
+        OLED 纯黑底、单一荧光黄主色、等宽字体承担代码与元数据、细描边低圆角。
+        这个官网本身，就是拿产品的设计 token 直接搭的。
+      </p>
+    </div>
+
+    <div class="bento">
+      <article class="cell cell--wide rv" id="tokenCell">
+        <h3 style="margin-bottom:16px">调色板</h3>
+        <div class="swatches" id="swatches"></div>
+      </article>
+
+      <article class="cell cell--wide rv">
+        <h3 style="margin-bottom:14px">字体与质感</h3>
+        <p style="margin-bottom:16px">本地字体栈，不引 Google Fonts CDN —— 境内加载不阻塞渲染。</p>
+        <div class="term">
+          <div class="term__bar"><i></i><i></i><i></i><span>tokens.css</span></div>
+          <div class="term__body"><div><span class="t-k">--font-display</span><span class="t-o">: </span><span class="t-s">"Arial Narrow", "PingFang SC"</span><span class="t-o">;</span>
+<span class="t-k">--font-sans</span><span class="t-o">:    </span><span class="t-s">"Segoe UI", "PingFang SC"</span><span class="t-o">;</span>
+<span class="t-k">--font-mono</span><span class="t-o">:    </span><span class="t-s">"Cascadia Mono", ui-monospace</span><span class="t-o">;</span>
+<span class="t-k">--hard-shadow</span><span class="t-o">:  </span><span class="t-s">3px 3px 0 #000</span><span class="t-o">;</span>
+<span class="t-c">/* 主 CTA：荧光黄底 + 黑描边 + 硬投影 */</span></div></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 下载 ============================ -->
+<section class="sec" id="download">
+  <div class="wrap">
+    <div class="dl rv">
+      <span class="eyebrow" style="justify-content:center">Get Started</span>
+      <h2>把 AI 装到桌面上</h2>
+      <p>安装包通过网盘分发，下载后双击安装即可。首次启动会引导你配置模型提供方。</p>
+
+      <div class="dl__actions">
+        <a class="btn btn--primary" href="https://pan.quark.cn/s/92552669a346" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="m6.5 11 5.5 5.5L17.5 11"/><path d="M4 20h16"/></svg>
+          网盘下载 · macOS
+        </a>
+        <a class="btn" href="https://pan.quark.cn/s/f327cc45eccd" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>
+          网盘下载 · Windows
+        </a>
+      </div>
+
+      <div class="dl__facts">
+        <span>当前版本 <b>v1.7.998</b></span>
+        <span>macOS 包 <b>约 663 MB</b></span>
+        <span>内核 <b>AgentScope 2.0.3</b></span>
+        <span>运行时 <b>Python 3.12 内置</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ Footer ============================ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__inner">
+      <a class="brand" href="#top">
+        <span class="brand__mark">M</span>
+        <span class="brand__text">
+          <span class="brand__name">Agent</span>
+          <span class="brand__sub">Desktop</span>
+        </span>
+      </a>
+      <div class="foot__links">
+        <a href="#capability">能力</a>
+        <a href="#arch">架构</a>
+        <a href="#harness">Harness</a>
+        <a href="#scenes">场景</a>
+        <a href="#download">下载</a>
+      </div>
+    </div>
+    <div class="foot__cr">
+      <span>Desktop Agent · 面向业务人员的桌面智能体平台</span>
+      <span>视觉 token 源自产品 ui/src/theme/tokens.css</span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>
