@@ -1,0 +1,189 @@
+/* ==========================================================================
+   Desktop Agent · 使用教程页样式
+   依赖 styles.css 的 :root 设计 token（Cyber Dark + Acid）
+   ========================================================================== */
+
+.tut-hero { position: relative; z-index: 1; padding: 46px 0 30px; text-align: center; }
+.tut-hero h1 { margin: 14px 0 12px; font-size: clamp(30px, 4.4vw, 46px); line-height: 1.14; letter-spacing: -.02em; }
+.tut-hero h1 .acid { color: var(--acid); }
+.tut-hero p { margin: 0 auto; max-width: 720px; color: var(--fgs); font-size: 15.5px; }
+.tut-hero .eyebrow { justify-content: center; }
+
+.tut-back {
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 20px;
+  font-size: 13px; color: var(--fgm); border: 1px solid var(--line);
+  background: var(--surface); padding: 8px 14px; border-radius: 999px;
+  box-shadow: var(--hard-shadow); transition: .18s;
+}
+.tut-back:hover { color: var(--acid); border-color: var(--acid-line); background: var(--acid-wash); }
+.tut-back svg { width: 14px; height: 14px; }
+
+/* ---- 布局：左目录 + 右正文 ---- */
+.tut-layout {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 258px minmax(0, 1fr);
+  gap: 34px; padding: 30px 0 84px; align-items: start;
+}
+
+.tut-toc { position: sticky; top: 86px; max-height: calc(100vh - 110px); overflow-y: auto; padding-right: 6px; }
+.tut-toc::-webkit-scrollbar { width: 6px; }
+.tut-toc::-webkit-scrollbar-thumb { background: var(--line2); border-radius: 3px; }
+
+.tut-toc__grp { margin-bottom: 16px; }
+.tut-toc__chap {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--acid); padding: 8px 10px; border: 1px solid var(--acid-line);
+  background: var(--acid-wash); border-radius: var(--r-sm); font-weight: 700;
+}
+.tut-toc__chap b { color: var(--fg); font-family: var(--font-sans); font-size: 12.5px; letter-spacing: 0; text-transform: none; }
+.tut-toc a {
+  display: block; padding: 6px 10px 6px 16px; margin: 2px 0;
+  font-size: 13px; color: var(--fgs); border-left: 2px solid var(--line);
+  transition: color .16s, border-color .16s, background .16s;
+}
+.tut-toc a:hover { color: var(--fg); border-left-color: var(--line2); background: rgba(255,255,255,.03); }
+.tut-toc a.is-active { color: var(--acid); border-left-color: var(--acid); background: var(--acid-wash); }
+
+/* ---- 章节 ---- */
+.tut-chap { scroll-margin-top: 84px; margin-bottom: 62px; }
+.tut-chap:last-child { margin-bottom: 0; }
+
+.tut-chap__head {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding-bottom: 16px; margin-bottom: 26px; border-bottom: 1px solid var(--line);
+}
+.tut-chap__n {
+  flex-shrink: 0; width: 44px; height: 44px; display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: 15px; font-weight: 700; color: var(--acid-ink);
+  background: var(--acid); border-radius: var(--r-md); box-shadow: var(--hard-shadow);
+}
+.tut-chap__head h2 { margin: 2px 0 5px; font-size: 24px; letter-spacing: -.015em; }
+.tut-chap__head p { margin: 0; font-size: 13.5px; color: var(--fgs); }
+
+.tut-sec { scroll-margin-top: 84px; margin-bottom: 30px; }
+.tut-sec > h3 {
+  margin: 0 0 12px; font-size: 17.5px; font-weight: 680; letter-spacing: -.01em;
+  display: flex; align-items: center; gap: 9px;
+}
+.tut-sec > h3::before {
+  content: ""; width: 4px; height: 16px; background: var(--acid); border-radius: 2px; flex-shrink: 0;
+}
+.tut-sec > h4 { margin: 20px 0 9px; font-size: 14.5px; font-weight: 660; color: var(--fgm); }
+.tut-sec p { margin: 0 0 12px; font-size: 14px; color: var(--fgs); line-height: 1.78; }
+.tut-sec p b, .tut-sec li b { color: var(--fgm); font-weight: 640; }
+.tut-sec ul, .tut-sec ol { margin: 0 0 14px; padding-left: 20px; }
+.tut-sec li { font-size: 13.8px; color: var(--fgs); line-height: 1.8; margin-bottom: 5px; }
+.tut-sec li::marker { color: var(--acid); }
+.tut-sec a { color: var(--ice); border-bottom: 1px dashed color-mix(in srgb, var(--ice) 45%, transparent); }
+.tut-sec a:hover { color: var(--acid); border-bottom-color: var(--acid); }
+
+/* ---- 正文列 ---- */
+.tut-main { min-width: 0; }
+
+/* ---- 提示条 ---- */
+.note {
+  display: flex; gap: 11px; align-items: flex-start;
+  border: 1px solid var(--acid-line); background: var(--acid-wash);
+  border-radius: var(--r-md); padding: 13px 15px; margin: 0 0 16px;
+}
+.note--warn { border-color: color-mix(in srgb, var(--amber) 34%, var(--line)); background: color-mix(in srgb, var(--amber) 8%, transparent); }
+.note--bad { border-color: color-mix(in srgb, var(--magenta) 34%, var(--line)); background: color-mix(in srgb, var(--magenta) 8%, transparent); }
+.note__i { flex-shrink: 0; font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--acid); padding-top: 2px; letter-spacing: .06em; }
+.note--warn .note__i { color: var(--amber); }
+.note--bad .note__i { color: var(--magenta); }
+.note p { margin: 0; font-size: 13.4px; color: var(--fgm); line-height: 1.72; }
+.note p + p { margin-top: 7px; }
+
+/* ---- 步骤 ---- */
+.steps { counter-reset: st; margin: 0 0 16px; padding: 0; list-style: none; }
+.steps > li {
+  counter-increment: st; position: relative; padding: 0 0 16px 40px; margin: 0;
+  border-left: 1px solid var(--line); margin-left: 13px;
+}
+.steps > li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.steps > li::before {
+  content: counter(st); position: absolute; left: -14px; top: 0;
+  width: 27px; height: 27px; display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+  color: var(--acid-ink); background: var(--acid); border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--bg);
+}
+.steps > li b { display: block; color: var(--fg); font-size: 14px; font-weight: 660; margin-bottom: 3px; }
+.steps > li span { font-size: 13.4px; color: var(--fgs); line-height: 1.72; }
+
+/* ---- 表格 ---- */
+.tt { width: 100%; border-collapse: collapse; margin: 0 0 16px; font-size: 13.2px; }
+.tt th, .tt td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.tt th {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--acid); background: var(--s2); font-weight: 700; white-space: nowrap;
+}
+.tt td { color: var(--fgs); line-height: 1.68; }
+.tt td:first-child { color: var(--fgm); font-weight: 600; white-space: nowrap; }
+.tt tr:hover td { background: rgba(255,255,255,.02); }
+.tt-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-md); margin-bottom: 16px; }
+.tt-wrap .tt { margin: 0; }
+
+/* ---- 代码 ---- */
+.tut-sec code, .panel code, .note code, .tt code {
+  font-family: var(--font-mono); font-size: 12.2px;
+  background: var(--s2); border: 1px solid var(--line);
+  padding: 1px 5px; border-radius: 4px; color: var(--ice); white-space: nowrap;
+}
+.pre {
+  border: 1px solid var(--line); background: #08080a; border-radius: var(--r-md);
+  padding: 13px 15px; margin: 0 0 16px; overflow-x: auto;
+}
+.pre code {
+  font-family: var(--font-mono); font-size: 12.4px; line-height: 1.75;
+  color: var(--fgm); background: none; border: 0; padding: 0; white-space: pre;
+}
+.pre .c { color: #5f6b7a; }
+.pre .k { color: var(--violet); }
+.pre .s { color: var(--ice); }
+.pre .a { color: var(--acid); }
+.pre .o { color: var(--emerald); }
+
+/* ---- 功能格子 ---- */
+.fn-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-bottom: 16px; }
+.fn {
+  border: 1px solid var(--line); background: var(--surface); border-radius: var(--r-lg);
+  padding: 16px 17px; transition: border-color .18s, transform .18s;
+}
+.fn:hover { border-color: var(--acid-line); transform: translateY(-2px); }
+.fn h5 { margin: 0 0 7px; font-size: 15px; font-weight: 680; display: flex; align-items: center; gap: 8px; }
+.fn h5 i {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--acid); display: block; flex-shrink: 0;
+}
+.fn p { margin: 0 0 9px; font-size: 13.2px; color: var(--fgs); line-height: 1.72; }
+.fn ul { margin: 0; padding-left: 17px; }
+.fn li { font-size: 12.8px; margin-bottom: 3px; }
+
+/* ---- 锚点回顶 ---- */
+.tut-top {
+  position: fixed; right: 22px; bottom: 22px; z-index: 40;
+  width: 42px; height: 42px; display: grid; place-items: center;
+  border: 1px solid var(--line2); background: var(--elev); border-radius: 50%;
+  color: var(--fgm); box-shadow: var(--hard-shadow); cursor: pointer;
+  opacity: 0; pointer-events: none; transition: .22s;
+}
+.tut-top.is-on { opacity: 1; pointer-events: auto; }
+.tut-top:hover { color: var(--acid-ink); background: var(--acid); border-color: var(--acid); }
+.tut-top svg { width: 17px; height: 17px; }
+
+/* ---- 章节间分隔 ---- */
+.tut-div { height: 1px; background: linear-gradient(90deg, var(--line), transparent); margin: 0 0 44px; }
+
+/* ---- 响应式 ---- */
+@media (max-width: 1000px) {
+  .tut-layout { grid-template-columns: 1fr; gap: 22px; padding-top: 20px; }
+  .tut-toc { position: static; max-height: none; overflow: visible; padding: 0 0 6px;
+    display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 14px; }
+  .tut-toc__grp { margin-bottom: 10px; }
+}
+@media (max-width: 640px) {
+  .tut-toc { grid-template-columns: 1fr; }
+  .fn-grid { grid-template-columns: 1fr; }
+  .tut-chap__head h2 { font-size: 20px; }
+}

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使用教程 — Desktop Agent · 桌面智能体平台</title>
+<meta name="description" content="Desktop Agent 使用教程：模型配置与推理强度、上下文设置、文件/报告/脚本库/插件/专家组/子代理/技能/工作流/知识库九大功能、记忆提取与历史归档机制、终端与通过终端启动 Coding CLI。">
+<meta name="theme-color" content="#050506">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="tutorial.css">
+<script>document.documentElement.className += " js";</script>
+<meta property="og:title" content="使用教程 — Desktop Agent">
+<meta property="og:description" content="从模型配置到终端委托，四章上手 Desktop Agent。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/app-screenshot.png">
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true">
+  <div class="bg-fx__glow bg-fx__glow--acid"></div>
+  <div class="bg-fx__glow bg-fx__glow--cyan"></div>
+  <div class="bg-fx__glow bg-fx__glow--violet"></div>
+  <div class="bg-fx__grid"></div>
+</div>
+
+<!-- ============================ 导航 ============================ -->
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html" aria-label="Desktop Agent 首页">
+      <span class="brand__mark">M</span>
+      <span class="brand__text">
+        <span class="brand__name">Agent</span>
+        <span class="brand__sub">Desktop · v1.7.998</span>
+      </span>
+    </a>
+    <nav class="nav__links" id="navLinks" aria-label="主导航">
+      <a class="nav__link" href="index.html#capability">能力</a>
+      <a class="nav__link" href="index.html#arch">架构</a>
+      <a class="nav__link" href="index.html#harness">Harness</a>
+      <a class="nav__link" href="index.html#models">模型</a>
+      <a class="nav__link" href="index.html#features">亮点</a>
+      <a class="nav__link" href="tutorial.html">教程</a>
+      <a class="nav__link" href="index.html#download">下载</a>
+      <a class="nav__cta" href="index.html#download">获取 Desktop Agent</a>
+    </nav>
+    <button class="nav__burger" id="navBurger" aria-label="展开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============================ 教程头 ============================ -->
+<section class="tut-hero">
+  <div class="wrap">
+    <span class="eyebrow">User Guide</span>
+    <h1>四章上手 <span class="acid">Desktop Agent</span></h1>
+    <p>
+      从第一次配置模型，到把开发任务委托给终端里的 Coding CLI ——
+      这一页讲清楚设置项在哪、每个功能干什么、记忆怎么存、终端怎么用。
+    </p>
+    <a class="tut-back" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg>
+      返回官网首页
+    </a>
+  </div>
+</section>
+
+<div class="wrap tut-layout">
+
+  <!-- ==================== 左侧目录 ==================== -->
+  <aside class="tut-toc" id="tutToc" aria-label="教程目录">
+
+    <div class="tut-toc__grp">
+      <div class="tut-toc__chap">01 <b>新手教程</b></div>
+      <a href="#s-model">模型配置</a>
+      <a href="#s-reasoning">推理强度</a>
+      <a href="#s-context">上下文设置</a>
+      <a href="#s-first">第一次对话</a>
+    </div>
+
+    <div class="tut-toc__grp">
+      <div class="tut-toc__chap">02 <b>功能介绍</b></div>
+      <a href="#s-file">文件</a>
+      <a href="#s-report">报告</a>
+      <a href="#s-script">脚本库</a>
+      <a href="#s-ext">插件</a>
+      <a href="#s-expert">专家组</a>
+      <a href="#s-subagent">子代理</a>
+      <a href="#s-skill">技能管理</a>
+      <a href="#s-workflow">工作流</a>
+      <a href="#s-kb">知识库</a>
+    </div>
+
+    <div class="tut-toc__grp">
+      <div class="tut-toc__chap">03 <b>记忆机制</b></div>
+      <a href="#s-mem-extract">记忆提取</a>
+      <a href="#s-mem-archive">历史归档</a>
+      <a href="#s-mem-use">怎么用起来</a>
+    </div>
+
+    <div class="tut-toc__grp">
+      <div class="tut-toc__chap">04 <b>终端</b></div>
+      <a href="#s-term">可见终端</a>
+      <a href="#s-cursor">启动 Cursor</a>
+      <a href="#s-term-rule">终端纪律</a>
+    </div>
+
+  </aside>
+
+  <!-- ==================== 正文 ==================== -->
+  <div class="tut-main">
+
+<!-- ==================== 第一章 ==================== -->
+<section class="tut-chap" id="chap-1">
+  <div class="tut-chap__head">
+    <span class="tut-chap__n">01</span>
+    <div>
+      <h2>新手教程：先把模型和上下文调对</h2>
+      <p>安装完成后，只需要三件事就能开始干活：配好模型、选对推理强度、给够上下文。</p>
+    </div>
+  </div>
+
+  <div class="tut-sec" id="s-model">
+    <h3>模型配置</h3>
+    <p>
+      入口：<b>设置 → 模型</b>。Desktop Agent 把模型当成可插拔配置，不是硬编码依赖 ——
+      云端 API、OpenRouter、本机 Ollama / llama.cpp 都能接，随时换。
+    </p>
+
+    <div class="tt-wrap">
+      <table class="tt">
+        <thead>
+          <tr><th>槽位</th><th>负责什么</th><th>建议怎么选</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>主脑 primary</td>
+            <td>推理、工具调用、长上下文任务</td>
+            <td>选能力最强、支持工具调用的模型；本地跑至少 8B 以上量化模型</td>
+          </tr>
+          <tr>
+            <td>视觉 utility_mm</td>
+            <td>图片 / 音频 / 视频侧看（截图、录屏、语音）</td>
+            <td>需要看图就配 <code>qwen-vl</code> / omni 类模型；纯文本任务可不配</td>
+          </tr>
+          <tr>
+            <td>兜底 fallback</td>
+            <td>主链失败时接管 retry + fallback</td>
+            <td>配一个稳定便宜的第二家，避免单点故障</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>接本地模型（零 API Key）</h4>
+    <ol class="steps">
+      <li><b>启动本地推理服务</b><span>Ollama 默认监听 <code>127.0.0.1:11434</code>；llama.cpp 用 <code>llama-server</code> 起 HTTP 服务并记下端口。</span></li>
+      <li><b>在设置里新增模型</b><span>类型选 <code>ollama</code> / <code>llama_cpp</code> / <code>openai_compat</code>，填 base_url 与模型名。识别到本地服务时会跳过凭证校验直接探活注册。</span></li>
+      <li><b>点测试连通性</b><span>返回正常再设为主脑。填了占位 Key（如 <code>123</code>）时，测试可能过但实际调用会报 <code>401</code> —— 本地服务请留空 Key。</span></li>
+    </ol>
+
+    <div class="note note--warn">
+      <span class="note__i">NOTE</span>
+      <p>
+        也可以直接让 AI 自己配：说一句「帮我把本地 llama.cpp 的 Qwen 加进来并测试连通」，
+        主脑会走 <code>model_catalog</code> 技能完成注册与验证，不用手点面板。
+      </p>
+    </div>
+  </div>
+
+  <div class="tut-sec" id="s-reasoning">
+    <h3>推理强度</h3>
+    <p>
+      推理强度（reasoning 档位）决定模型在回答前「想多久」。档位越高，方案越周全、
+      工具调用越稳，但耗时和 token 也越多。在模型配置项里按模型单独设置。
+    </p>
+
+    <div class="tt-wrap">
+      <table class="tt">
+        <thead>
+          <tr><th>档位</th><th>适用场景</th><th>代价</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>关闭 / off</td><td>闲聊、简单问答、纯检索、批量改名</td><td>最快最省，复杂任务容易想漏</td></tr>
+          <tr><td>低 low</td><td>日常办公：写文档、查数据、单文件改动</td><td>响应快，够用</td></tr>
+          <tr><td>中 medium</td><td>多步任务、脚本编写、网页抓取、报告生成</td><td>推荐日常默认档</td></tr>
+          <tr><td>高 high</td><td>架构设计、疑难 bug 定位、跨仓重构、方案评审</td><td>慢且贵，值得用在关键决策上</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <span class="note__i">本地模型</span>
+      <p>
+        llama.cpp 的 <code>--reasoning-format</code> 默认是 <code>none</code>（等于关掉推理）。
+        想用三档推理，必须在启动脚本里显式设置该参数，档位再通过请求级 budget 传递。
+        验证档位时建议另开一个端口起探针实例，别动正在用的主服务。
+      </p>
+    </div>
+  </div>
+
+  <div class="tut-sec" id="s-context">
+    <h3>上下文设置</h3>
+    <p>
+      上下文长度决定 AI 一次能「记住」多少内容 —— 对话历史、读到的文件、工具返回都算在里面。
+      设置项在模型配置里，关键是把 <b>声明值</b> 和 <b>真实值</b> 对齐。
+    </p>
+
+    <div class="fn-grid">
+      <div class="fn">
+        <h5><i></i>上下文长度怎么填</h5>
+        <p>填模型服务<b>真实</b>可用的窗口大小，不要照着宣传值虚高填。</p>
+        <ul>
+          <li>本地 llama.cpp：以启动参数 <code>-c / --ctx-size</code> 为准</li>
+          <li>多人共用服务要除以并发数，否则会被别人挤爆</li>
+          <li>填大了 → 到不了压缩阈值就被服务端截断，表现为「答非所问」</li>
+        </ul>
+      </div>
+      <div class="fn">
+        <h5><i></i>压缩阈值</h5>
+        <p>用量达到设定比例（默认约 <b>90%</b>）时触发自动压缩，把早期对话摘要化腾出空间。</p>
+        <ul>
+          <li>一发消息就压缩 = 声明的上下文太小，或阈值设太低</li>
+          <li>长任务建议调高上下文而不是频繁压缩</li>
+          <li>压缩是有损的，关键约束请写进文件或规则里</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>四级压缩机制（了解即可，自动生效）</h4>
+    <ul>
+      <li><b>L0 会话分页</b>：超长工具回包分页，按需翻页读回</li>
+      <li><b>L1 任务 pin</b>：当前任务的关键信息钉住，不被压掉</li>
+      <li><b>L2 回包 compact</b>：工具结果就地精简，只留结论与路径</li>
+      <li><b>L3 offload 落盘</b>：大输出写进 <code>output/files/</code>，需要时再读文件，而不是塞满窗口</li>
+    </ul>
+  </div>
+
+  <div class="tut-sec" id="s-first">
+    <h3>第一次对话：怎么说才好用</h3>
+    <p>把 Desktop Agent 当成一位能动手的自动化工程师，而不只是聊天机器人。</p>
+    <div class="fn-grid">
+      <div class="fn">
+        <h5><i></i>这样说</h5>
+        <ul>
+          <li>「读一下 output/ 里的 sales.xlsx，按区域汇总，出一份 HTML 报告」</li>
+          <li>「打开这个网页，把表格抓下来存成 CSV」</li>
+          <li>「每周一早上 9 点把这个报表发我微信」</li>
+        </ul>
+      </div>
+      <div class="fn">
+        <h5><i></i>避免这样</h5>
+        <ul>
+          <li>「帮我处理下数据」—— 没说哪份数据、要什么结果</li>
+          <li>一句话塞十个需求 —— 拆成几步，或让它先出清单</li>
+          <li>要求它编造没查到的事实 —— 它会如实说缺口，这是设计如此</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">
+      <span class="note__i">TIP</span>
+      <p>
+        需要它改文件、跑脚本时，注意输入框旁的能力徽章：<b>工作</b>模式可写文件 / 跑 Shell / 派子代理，
+        <b>询问</b>模式只读。点徽章即可切换。
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="tut-div"></div>
+
+<!-- ==================== 第二章 ==================== -->
+<section class="tut-chap" id="chap-2">
+  <div class="tut-chap__head">
+    <span class="tut-chap__n">02</span>
+    <div>
+      <h2>功能介绍：九个模块各管什么</h2>
+      <p>左侧活动栏 / 设置里能看到的九大功能区，按「做什么事找哪个」来记。</p>
+    </div>
+  </div>
+
+  <div class="tut-sec" id="s-file">
+    <h3>文件</h3>
+    <p>
+      所有产物的统一归口。AI 干活时读写的文件都落在<b>会话工作区</b>里，交付物按类型分目录，
+      聊天底部的文件卡片可以直接打开抽屉查看。
+    </p>
+    <div class="tt-wrap">
+      <table class="tt">
+        <thead><tr><th>目录</th><th>放什么</th></tr></thead>
+        <tbody>
+          <tr><td>output/files/</td><td>文档、HTML、PDF、Excel、日志</td></tr>
+          <tr><td>output/images/ · videos/ · audio/</td><td>图片、视频、音频产物（聊天里可直接预览）</td></tr>
+          <tr><td>output/tables/</td><td>表格数据，大表优先存 parquet</td></tr>
+          <tr><td>output/scripts/</td><td>固化后的 RPA 脚本</td></tr>
+          <tr><td>input/</td><td>你拖进来的附件</td></tr>
+          <tr><td>inbox/</td><td>已登记的交付物（文件抽屉就是看这里）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      文件面板支持代码高亮预览、Office 文档预览（docx / xlsx / pptx）与 HTML 编辑。
+      想授权 AI 改工作区以外的目录，说一句「我要整理桌面上的 xx 文件夹」，它会请求路径授权后再动手。
+    </p>
+  </div>
+
+  <div class="tut-sec" id="s-report">
+    <h3>报告</h3>
+    <p>两种交付形态，按场景选：</p>
+    <div class="fn-grid">
+      <div class="fn">
+        <h5><i></i>Canvas 看板</h5>
+        <p>聊天内的结构化卡片 / 报告页，适合结论 + 证据 + 下一步。</p>
+        <ul>
+          <li>表格、图表、指标行、对比矩阵都能画</li>
+          <li>不落地成文件，随会话保存</li>
+          <li>长文分析优先用它，聊天里只留一两句导读</li>
+        </ul>
+      </div>
+      <div class="fn">
+        <h5><i></i>HTML / 文档报告</h5>
+        <p>要发给别人、要留档，就出文件。</p>
+        <ul>
+          <li>精美业务 HTML 报告（内置模板库）</li>
+          <li>Word / Excel / PPT 直接生成</li>
+          <li>动画 HTML 幻灯片，可用于汇报</li>
+          <li>PDF 读写：提取、合并、加水印、填表单</li>
+        </ul>
+      </div>
+    </div>
+    <p>示例说法：<b>「把这份调研整理成一页 HTML 报告，发我文件」</b>或<b>「用 Canvas 给我做个数据看板」</b>。</p>
+  </div>
+
+  <div class="tut-sec" id="s-script">
+    <h3>脚本库</h3>
+    <p>
+      把一次性操作<b>固化成可重复运行的 RPA 脚本</b>。会话里探索阶段写的临时脚本在工作区
+      <code>scripts/</code>；确认好用后固化进脚本库（<code>output/scripts/</code>），之后可以一键运行或挂定时。
+    </p>
+    <ol class="steps">
+      <li><b>探索</b><span>先用自然语言让它做一次，比如「把这个文件夹里的图片批量压缩」。</span></li>
+      <li><b>固化</b><span>说「把这个存成脚本任务」，它会把工作区脚本登记为 RPA 任务。</span></li>
+      <li><b>运行</b><span>脚本库面板里点运行，或让 AI 调 <code>run_script</code>。</span></li>
+      <li><b>定时</b><span>说「每天早上 8 点跑一次」，它会用 5 段 cron 注册定时计划。</span></li>
+    </ol>
+    <div class="note">
+      <span class="note__i">支持类型</span>
+      <p>python · playwright（浏览器自动化）· shell 等。定时任务的结果可以通过微信 / 站内通知推给你。</p>
+    </div>
+  </div>
+
+  <div class="tut-sec" id="s-ext">
+    <h3>插件</h3>
+    <p>
+      插件是给 Desktop Agent 加<b>专属界面和专属能力</b>的扩展包，装在
+      <code>extensions/user/</code> 下。适合把一套高频业务操作做成带按钮的面板，而不是每次打字。
+    </p>
+    <div class="fn-grid">
+      <div class="fn">
+        <h5><i></i>能做什么</h5>
+        <ul>
+          <li>自定义页面 / 表格 / 流程图面板</li>
+          <li>对接你自己的 HTTP 接口、上传入口</li>
+          <li>在右侧抽屉里常驻，随时调用</li>
+        </ul>
+      </div>
+      <div class="fn">
+        <h5><i></i>怎么造</h5>
+        <ul>
+          <li>说「我要做一个 xx 插件」→ 走脚手架模板</li>
+          <li>复杂插件可交给 Coding CLI 实现</li>
+          <li>自带校验、探活、浏览器实测</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tut-sec" id="s-expert">
+    <h3>专家组</h3>
+    <p>
+      专家是<b>带特定人格与专长的角色</b>（如架构评审、代码审查、文案策划）。
+      在对话里 <code>@专家名</code> 即可临时套用该视角；需要多位专家协作或长时间独立作业时，才升级为子代理派发。
+    </p>
+    <ul>
+      <li><b>单个专家</b>：直接套用角色回答，不起新进程，最轻量</li>
+      <li><b>多位专家</b>：可并行派发，各自带独立上下文与验收标准</li>
+      <li>适合场景：方案评审、代码 review、多角色内容共创</li>
+    </ul>
+  </div>
+
+  <div class="tut-sec" id="s-subagent">
+    <h3>子代理</h3>
+    <p>
+      主脑把<b>可并行或耗时长的子目标</b>派给独立子代理执行。子代理自带工作区，跑完把结论交回主脑汇总 ——
+      主脑的上下文不会被中间过程塞满。
+    </p>
+    <div class="tt-wrap">
+      <table class="tt">
+        <thead><tr><th>什么时候用</th><th>为什么</th></tr></thead>
+        <tbody>
+          <tr><td>多个互不依赖的子任务</td><td>并行跑，总时长≈最慢那个</td></tr>
+          <tr><td>长时间 agentic 作业</td><td>避免主会话上下文被过程日志吃掉</td></tr>
+          <tr><td>需要独立验收的改码任务</td><td>带 QA 流程派发，交付前跑测试</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      用法：说<b>「这几件事并行处理」</b>或<b>「派子代理去做」</b>。主脑会画一张带并联边的任务图，
+      然后按批派发；进度在任务清单里可见。
+    </p>
+  </div>
+
+  <div class="tut-sec" id="s-skill">
+    <h3>技能管理</h3>
+    <p>
+      技能是<b>按需加载的能力包</b>：浏览器自动化、PDF、Office、飞书、抓站、出图、终端……
+      平时只加载索引（省上下文），真正要用时才展开细则和工具。
+    </p>
+    <div class="tt-wrap">
+      <table class="tt">
+        <thead><tr><th>层级</th><th>含义</th><th>开销</th></tr></thead>
+        <tbody>
+          <tr><td>L0</td><td>常驻系统工具，随时可用</td><td>零</td></tr>
+          <tr><td>L1</td><td>技能 / 工作流 / 专家索引</td><td>极低</td></tr>
+          <tr><td>L2</td><td>技能入口说明</td><td>低</td></tr>
+          <tr><td>L3</td><td>参考文档 + 具体工具组解锁</td><td>按需</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li><b>技能市场</b>：可从开源生态搜索并安装新技能</li>
+      <li><b>自建技能</b>：说「把这套流程做成技能」→ 走技能创建向导，产物在用户技能目录</li>
+      <li><b>Playbook</b>：每个技能可沉淀「做这件事的正确姿势」，成功后自动写回，下次少走弯路</li>
+    </ul>
+  </div>
+
+  <div class="tut-sec" id="s-workflow">
+    <h3>工作流</h3>
+    <p>
+      工作流 = <b>可执行、可复用、可定时的编排</b>。两层概念别混：
+    </p>
+    <div class="fn-grid">
+      <div class="fn">
+        <h5><i></i>过程清单（草稿）</h5>
+        <p>会话内的执行 checklist，随任务自动创建、逐步打勾。</p>
+        <ul>
+          <li>看得到当前进行到哪一步</li>
+          <li>标完成必须附证据（产物路径 / 命令）</li>
+          <li>用完即弃，不进库</li>
+        </ul>
+      </div>
+      <div class="fn">
+        <h5><i></i>工作流库（Library）</h5>
+        <p>确认过的流程存成模板，可反复运行。</p>
+        <ul>
+          <li>支持串行 + 并联的 fork-join 图</li>
+          <li>可绑定时器（cron 或单次）</li>
+          <li>最后一步可挂推送渠道：站内 / 微信</li>
+        </ul>
+      </div>
+    </div>
+    <p>示例：<b>「把刚才这套流程存成工作流，每周一 9 点跑，结果发我微信」</b>。</p>
+  </div>
+
+  <div class="tut-sec" id="s-kb">
+    <h3>知识库</h3>
+    <p>
+      知识库是 AI 的<b>长期记忆总结</b>，给主脑自己用 —— 不是给你上传文档做检索的网盘。
+      它把跨会话的经验沉淀成结构化条目，新会话开场就作为背景注入。
+    </p>
+    <div class="tt-wrap">
+      <table class="tt">
+        <thead><tr><th>知识域</th><th>存什么</th><th>什么时候被用</th></tr></thead>
+        <tbody>
+          <tr><td>sessions</td><td>历史会话摘要（做过什么、结论是什么）</td><td>你提到「上次那个」「之前我们」时检索</td></tr>
+          <tr><td>lessons</td><td>踩过的坑与修复方式</td><td>新任务前自动参考，避免重复犯错</td></tr>
+          <tr><td>personality</td><td>你的偏好与习惯</td><td>决定语气、默认选择、交付形式</td></tr>
+          <tr><td>playbook</td><td>某类任务的标准做法</td><td>遇到同类任务直接照做</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note note--warn">
+      <span class="note__i">注意</span>
+      <p>
+        想让它记住某件事，直接说<b>「记住：以后报表都用这种格式」</b>即可，会写进长期记忆；
+        想让它忘掉或修正，说<b>「之前那条记错了，改成……」</b>。
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="tut-div"></div>
+
+<!-- ==================== 第三章 ==================== -->
+<section class="tut-chap" id="chap-3">
+  <div class="tut-chap__head">
+    <span class="tut-chap__n">03</span>
+    <div>
+      <h2>记忆提取机制与历史归档</h2>
+      <p>会话结束不等于失忆。三层结构：当场记得住、事后找得回、长期用得上。</p>
+    </div>
+  </div>
+
+  <div class="tut-sec" id="s-mem-extract">
+    <h3>记忆提取机制</h3>
+    <p>记忆不是一整坨塞进上下文，而是<b>分层按需提取</b>：</p>
+    <ol class="steps">
+      <li><b>常驻摘要（自动注入）</b><span>开场就带上：你常做的事、在做的项目、已沉淀的教训、近期会话时间线。这部分很轻，保证「新会话也认得你」。</span></li>
+      <li><b>相关性召回（自动触发）</b><span>你的话里出现「上次」「之前」「那个项目」时，系统按语义 + 关键词把最相关的历史片段捞出来，只捞需要的几条。</span></li>
+      <li><b>主动检索（按需调用）</b><span>需要更多细节时，AI 会去检索归档记忆或读原始会话摘要，而不是靠「印象」编造。</span></li>
+      <li><b>上下文压缩（超长时）</b><span>会话过长触发压缩，早期内容摘要化；关键约束钉住不丢，大输出落盘按需回读。</span></li>
+    </ol>
+    <div class="note">
+      <span class="note__i">诚实原则</span>
+      <p>
+        没查到就说没查到。系统禁止用训练记忆冒充刚查的结果 —— 所以你会看到它明确说「未在历史会话中找到」，这是特性不是缺陷。
+      </p>
+    </div>
+  </div>
+
+  <div class="tut-sec" id="s-mem-archive">
+    <h3>历史归档</h3>
+    <p>每次会话结束会被归档成结构化条目，落在本地数据目录，可随时检索：</p>
+    <div class="tt-wrap">
+      <table class="tt">
+        <thead><tr><th>归档内容</th><th>用途</th></tr></thead>
+        <tbody>
+          <tr><td>会话摘要（意图 / 用到的工具 / 结果）</td><td>回忆「那次是怎么做的」</td></tr>
+          <tr><td>主题与标签</td><td>按项目、按技术栈聚合检索</td></tr>
+          <tr><td>教训条目（错误 → 修复）</td><td>下次同类任务前主动避坑</td></tr>
+          <tr><td>用户偏好画像</td><td>影响默认选择与表达方式</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul>
+      <li><b>本地存储</b>：数据在你自己的机器上，不上传</li>
+      <li><b>可查可改</b>：说「看看你记住了我哪些偏好」，或「删掉那条过时的记忆」</li>
+      <li><b>跨会话引用</b>：可以用 <code>@会话</code> 的方式把某次历史会话拉进当前上下文</li>
+    </ul>
+  </div>
+
+  <div class="tut-sec" id="s-mem-use">
+    <h3>怎么用起来</h3>
+    <div class="fn-grid">
+      <div class="fn">
+        <h5><i></i>推荐说法</h5>
+        <ul>
+          <li>「记住：这个项目部署在 47.x 那台机器上」</li>
+          <li>「上次那个 ESP32 烧录问题怎么解决的？」</li>
+          <li>「查一下我们之前关于官网部署的会话」</li>
+          <li>「这个坑记下来，以后别再犯」</li>
+        </ul>
+      </div>
+      <div class="fn">
+        <h5><i></i>效果</h5>
+        <ul>
+          <li>新会话开场自带项目背景，不用重讲</li>
+          <li>同类错误第二次出现时会被主动规避</li>
+          <li>偏好被记住：默认输出格式、语气、交付方式</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tut-div"></div>
+
+<!-- ==================== 第四章 ==================== -->
+<section class="tut-chap" id="chap-4">
+  <div class="tut-chap__head">
+    <span class="tut-chap__n">04</span>
+    <div>
+      <h2>终端，以及通过终端启动 Cursor</h2>
+      <p>看得见的终端：AI 敲的每一条命令你都能实时看到，也能随时接管。</p>
+    </div>
+  </div>
+
+  <div class="tut-sec" id="s-term">
+    <h3>可见终端（Visible Terminal）</h3>
+    <p>
+      Desktop Agent 的终端是<b>真实 PTY</b>，不是偷偷执行的后台进程 —— 界面里能看到命令逐行输出，
+      支持交互式程序（vim、top、REPL、Coding CLI 都能跑）。
+    </p>
+    <div class="fn-grid">
+      <div class="fn">
+        <h5><i></i>你能做的</h5>
+        <ul>
+          <li>实时围观 AI 执行的命令与输出</li>
+          <li>随时插话纠正方向</li>
+          <li>让 AI 读回终端日志、按关键字检索</li>
+          <li>要求停掉 / 关闭某个终端</li>
+        </ul>
+      </div>
+      <div class="fn">
+        <h5><i></i>适合场景</h5>
+        <ul>
+          <li>起本地服务（llama-server、http.server）</li>
+          <li>跑构建 / 测试 / 部署命令</li>
+          <li>长驻交互式进程</li>
+          <li>委托 Coding CLI 做多轮开发</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note note--warn">
+      <span class="note__i">主机 Shell</span>
+      <p>
+        终端跑的是你本机的真实 Shell（macOS 为 zsh，Windows 为对应 ShellKind），
+        不是对话里随口给的示例命令。所以路径、环境变量都与你日常一致。
+      </p>
+    </div>
+  </div>
+
+  <div class="tut-sec" id="s-cursor">
+    <h3>通过终端启动 Cursor（Coding CLI）</h3>
+    <p>
+      Desktop Agent 可以把开发任务委托给本机的 Coding CLI（Cursor / Claude / Codex 等），
+      由它在真实终端里读仓、出方案、改代码，主脑负责澄清需求、确认目录、验收结果。
+    </p>
+
+    <div class="note note--bad">
+      <span class="note__i">关键</span>
+      <p>
+        走的是 Cursor 的命令行 <code>agent</code>，<b>不是</b> IDE 图形界面。
+        在 Windows 上直接敲 <code>cursor …</code> 会弹出 IDE，这类调用会被拒绝。
+        正确入口是统一 runner：
+      </p>
+    </div>
+
+    <div class="pre"><code><span class="c"># 统一入口（provider 可换 claude / codex）</span>
+python <span class="s">"&lt;DESKTOP_AGENT_ROOT&gt;/skills/coding_cli/scripts/run_coding_cli.py"</span> \
+  <span class="a">--provider</span> cursor <span class="a">--workspace</span> <span class="s">"&lt;项目绝对路径&gt;"</span> \
+  <span class="a">--mode</span> plan <span class="a">--prompt-file</span> <span class="s">"&lt;需求索引.md&gt;"</span></code></div>
+
+    <h4>标准流程</h4>
+    <ol class="steps">
+      <li><b>确认 CLI 可用</b><span><code>agent --version</code> 能返回版本即已安装；未登录时执行 <code>agent login</code> 或配置 API Key（安装与登录都会先征得你同意）。</span></li>
+      <li><b>确认项目绝对路径</b><span>必须由你明确给出或勾选，不会拿当前目录瞎猜。</span></li>
+      <li><b>需求落盘</b><span>把澄清后的需求写进项目的 <code>chat/</code> 目录，终端里只传一份短索引，避免长文塞爆 CLI。</span></li>
+      <li><b>先方案后改码</b><span>默认 <code>plan</code> / <code>ask</code> 模式，你看过方案并授权后才升级到 <code>write</code>。模式升级会自动开新的可写终端会话。</span></li>
+      <li><b>验收</b><span>改完必须跑测试（仓库自带 <code>pytest</code> / <code>npm test</code> / <code>go test</code>），核对文件确实被改，才算完成。</span></li>
+    </ol>
+
+    <div class="tt-wrap">
+      <table class="tt">
+        <thead><tr><th>模式</th><th>能做什么</th><th>何时用</th></tr></thead>
+        <tbody>
+          <tr><td>plan</td><td>只出实施方案，不改文件</td><td>动手前先对齐思路</td></tr>
+          <tr><td>ask</td><td>问答式勘察仓库</td><td>搞清楚代码结构 / 定位问题</td></tr>
+          <tr><td>write</td><td>真实改码</td><td>方案确认并授权之后</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      最省事的用法是直接说人话：<b>「用 Cursor 帮我改这个项目：/Users/xx/proj，先出方案」</b> ——
+      上面这些纪律由主脑自动执行，你只需要在关键节点确认和授权。
+    </p>
+  </div>
+
+  <div class="tut-sec" id="s-term-rule">
+    <h3>终端纪律（安全边界）</h3>
+    <ul>
+      <li><b>先看再杀</b>：要停终端前先列出在跑的会话，不会盲杀正在运行的任务</li>
+      <li><b>串行执行</b>：Shell 命令按序跑，不会两条命令互相踩</li>
+      <li><b>写操作有边界</b>：只在会话工作区内写文件；要动别的目录必须先申请路径授权</li>
+      <li><b>删除进回收站</b>：删文件走系统回收站，可恢复，不做永久删除</li>
+      <li><b>日志可追溯</b>：长输出落盘归档，结论必须基于真实日志而不是猜测</li>
+      <li><b>危险操作先问</b>：不可逆动作会用选项卡跟你确认</li>
+    </ul>
+  </div>
+</section>
+
+  </div><!-- /tut-main -->
+</div><!-- /tut-layout -->
+
+<!-- ============================ 下一步 ============================ -->
+<section class="sec--tight" style="position:relative;z-index:1">
+  <div class="wrap">
+    <div class="dl">
+      <span class="eyebrow" style="justify-content:center">Next</span>
+      <h2>看完就去试</h2>
+      <p>从「配置本地模型」或「让它做一份报告」开始，遇到问题直接问它自己。</p>
+      <div class="dl__actions">
+        <a class="btn btn--primary" href="index.html#download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="m6.5 11 5.5 5.5L17.5 11"/><path d="M4 20h16"/></svg>
+          下载 Desktop Agent
+        </a>
+        <a class="btn" href="index.html#capability">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          回看能力总览
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ Footer ============================ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">M</span>
+        <span class="brand__text">
+          <span class="brand__name">Agent</span>
+          <span class="brand__sub">Desktop</span>
+        </span>
+      </a>
+      <div class="foot__links">
+        <a href="index.html#capability">能力</a>
+        <a href="index.html#arch">架构</a>
+        <a href="index.html#harness">Harness</a>
+        <a href="tutorial.html">教程</a>
+        <a href="index.html#download">下载</a>
+      </div>
+    </div>
+    <div class="foot__cr">
+      <span>Desktop Agent · 面向业务人员的桌面智能体平台</span>
+      <span>视觉 token 源自产品 ui/src/theme/tokens.css</span>
+    </div>
+  </div>
+</footer>
+
+<button class="tut-top" id="tutTop" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5.5 11.5 6.5-6.5 6.5 6.5"/></svg>
+</button>
+
+<script src="main.js" defer></script>
+<script src="tutorial.js" defer></script>
+</body>
+</html>

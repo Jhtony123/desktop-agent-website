@@ -4,7 +4,7 @@
 
 ## 在线预览
 
-- 自托管：http://47.97.208.253/
+- 自托管：`http://<your-server-ip>/`（部署在自己的服务器上，地址不公开写入仓库）
 - 开启 GitHub Pages 后：`https://<username>.github.io/<repo>/`
 
 ## 快速开始
@@ -23,8 +23,11 @@ python3 -m http.server 8848 --bind 127.0.0.1
 ```
 desktop-agent-website/
 ├── index.html              单页站点（11 个语义化 section）
+├── tutorial.html           使用教程页（四章 + 左侧粘性目录）
 ├── styles.css              全部样式（设计 token 内联在 :root）
+├── tutorial.css            教程页专属样式（复用 styles.css 的 token）
 ├── main.js                 原生 JS 交互
+├── tutorial.js             教程页交互（目录高亮 / 平滑滚动 / 回顶）
 └── assets/
     ├── app-screenshot.png  应用界面截图（Hero 主视觉）
     └── favicon.svg         站点图标
