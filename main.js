@@ -278,7 +278,7 @@
       var href = a.getAttribute("href");
       if (href && href !== "#") return; // 已配置真实链接则放行
       e.preventDefault();
-      toast("下载链接待配置 —— 请把夸克网盘分享地址填入 index.html 对应按钮的 href");
+      toast("下载链接待配置 —— 请把夸克网盘分享地址填入 index.html 下载按钮的 href");
     });
   });
 
