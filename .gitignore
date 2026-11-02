@@ -23,3 +23,6 @@ assets/tokens.css.ref
 
 # 部署脚本与服务器信息（含主机路径，不入公开仓库）
 deploy/
+
+# 截图原图（未压缩，站点只用 assets/screens/ 下的优化版）
+picture/

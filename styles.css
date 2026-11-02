@@ -976,6 +976,7 @@ code {
   .bento { grid-template-columns: 1fr; gap: 12px; }
   .cell, .cell--wide, .cell--full { grid-column: span 1; }
   .stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .feats { grid-template-columns: 1fr; gap: 12px; }
   .stat { padding: 20px 16px; }
   .dl { padding: 42px 22px; }
   .shot__path { display: none; }
@@ -1380,4 +1381,48 @@ code {
 @media (max-width: 720px) {
   .swatches { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
   .toast { bottom: 20px; font-size: 12.5px; }
+}
+
+
+/* --------------------------------------------------------------------------
+   亮点卡片内嵌界面实拍
+   -------------------------------------------------------------------------- */
+.feat__shot {
+  display: block;
+  margin-top: 18px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: #050506;
+  transition: .25s;
+}
+.feat__shot:hover {
+  border-color: var(--acid-line);
+  box-shadow: 0 14px 34px -14px rgba(0,0,0,.9);
+  transform: translateY(-2px);
+}
+.feat__shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: .92;
+  transition: opacity .25s;
+}
+.feat__shot:hover img { opacity: 1; }
+
+
+/* 宽卡：文字 + 实拍左右并排 */
+.feat--wide { grid-column: span 2; }
+.feat--wide .feat__wide {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: 22px;
+  align-items: start;
+}
+.feat--wide .feat__shot { margin-top: 0; }
+
+@media (max-width: 900px) {
+  .feat--wide { grid-column: span 1; }
+  .feat--wide .feat__wide { grid-template-columns: 1fr; }
+  .feat--wide .feat__shot { margin-top: 18px; }
 }

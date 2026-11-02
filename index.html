@@ -30,7 +30,7 @@
       <span class="brand__mark">M</span>
       <span class="brand__text">
         <span class="brand__name">Agent</span>
-        <span class="brand__sub">Desktop · v1.7.998</span>
+        <span class="brand__sub">Desktop · v1.7.999</span>
       </span>
     </a>
     <nav class="nav__links" id="navLinks" aria-label="主导航">
@@ -584,7 +584,7 @@
 
     <div class="sec__head rv">
       <span class="eyebrow">Highlights</span>
-      <h2>四个让它长在手边的功能</h2>
+      <h2>让它长在手边的功能</h2>
       <p class="sec__desc">
         不只是个聊天窗口。它能主动找你、能被扩展、能自己按时跑，也能直接开口对话。
       </p>
@@ -614,44 +614,6 @@
       <article class="feat rv">
         <div class="feat__top">
           <div class="feat__ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7h5a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5"/><rect x="9" y="2.5" width="6" height="5" rx="1.5"/><path d="M12 11v6"/><path d="m9.5 14.5 2.5 2.5 2.5-2.5"/></svg>
-          </div>
-          <div>
-            <h3>插件系统</h3>
-            <p class="feat__k">extensions / 62 modules</p>
-          </div>
-        </div>
-        <p>把重复业务做成带界面的插件，钉在侧边栏常驻。脚手架生成、蓝图接入、校验、热重载一条龙。</p>
-        <ul>
-          <li><b>四种模板</b>：CLI 桥接 · 多表 · React Flow · 基础页</li>
-          <li><b>蓝图接入</b>：给个 HTTP / 浏览器 / 上传场景就能生成</li>
-          <li><b>热重载</b>：改完即生效，UI 与运行时可分别重载</li>
-          <li>登录态托管：认证面板 + 会话持久化，插件不必各自处理登录</li>
-        </ul>
-      </article>
-
-      <article class="feat rv">
-        <div class="feat__top">
-          <div class="feat__ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
-          </div>
-          <div>
-            <h3>定时任务</h3>
-            <p class="feat__k">scheduler / APScheduler</p>
-          </div>
-        </div>
-        <p>跑通的流程固化成脚本，挂上 cron 就无人值守。巡检、报表、盯盘、备份，交给它按时做。</p>
-        <ul>
-          <li><b>两种触发</b>：cron 循环 · 一次性定点</li>
-          <li><b>两级调度</b>：RPA 脚本任务与 Workflow 工作流分开管</li>
-          <li><b>CPU 动态限流</b>：并发按机器负载自动收放</li>
-          <li>需要人确认时会 park 住等你，不会闷头做错</li>
-        </ul>
-      </article>
-
-      <article class="feat rv">
-        <div class="feat__top">
-          <div class="feat__ico">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/><path d="M8.5 21h7"/></svg>
           </div>
           <div>
@@ -668,6 +630,120 @@
         </ul>
         <div class="wave" aria-hidden="true">
           <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </article>
+
+      <article class="feat rv">
+        <div class="feat__top">
+          <div class="feat__ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.5"/><circle cx="5.5" cy="18" r="2.5"/><circle cx="18.5" cy="12" r="2.5"/><path d="M8 6h4a3 3 0 0 1 3 3v.5M8 18h4a3 3 0 0 0 3-3v-.5"/></svg>
+          </div>
+          <div>
+            <h3>工作流库</h3>
+            <p class="feat__k">workflow library / DAG</p>
+          </div>
+        </div>
+        <p>跑顺的多步任务沉淀为工作流：自然语言共创、可视化编排，确认后就是可重复执行的标准作业。</p>
+        <ul>
+          <li><b>共创确认</b>：草稿 → 你确认 → 入库，不做黑箱</li>
+          <li><b>版本管理</b>：每次修订留痕，可回滚可对比</li>
+          <li><b>挂定时器</b>：确认后直接绑 cron，无人值守</li>
+          <li>导入导出 JSON，团队之间可以互相搬运</li>
+        </ul>
+        <a class="feat__shot" href="assets/screens/workflow.png" target="_blank" rel="noopener" aria-label="查看工作流库界面大图">
+          <img src="assets/screens/workflow.png" alt="工作流库界面：分组筛选、版本与状态列，支持导入导出与定时运行" loading="lazy" width="1920" height="1253">
+        </a>
+      </article>
+
+      <article class="feat rv">
+        <div class="feat__top">
+          <div class="feat__ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+          </div>
+          <div>
+            <h3>技能管理</h3>
+            <p class="feat__k">skills / L1–L3 分层</p>
+          </div>
+        </div>
+        <p>能力不是焊死在系统里，而是像 App 一样管理：官方技能包随版本升级，用户技能自己装、自己建。</p>
+        <ul>
+          <li><b>分层加载</b>：索引常驻、细则按需注入，省上下文</li>
+          <li><b>一键升级</b>：官方技能包更新可同步，不覆盖你的定制</li>
+          <li><b>生态兼容</b>：Cursor / Claude 技能包直接可用</li>
+          <li>技能带 playbook：踩过的坑沉淀成下次直接读的经验</li>
+        </ul>
+        <a class="feat__shot" href="assets/screens/skills.png" target="_blank" rel="noopener" aria-label="查看技能管理界面大图">
+          <img src="assets/screens/skills.png" alt="技能管理界面：官方与用户技能列表，支持升级与启停" loading="lazy" width="1920" height="1253">
+        </a>
+      </article>
+
+      <article class="feat rv">
+        <div class="feat__top">
+          <div class="feat__ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5V7a2 2 0 0 0-2-2h-3.5M4 11.5V7a2 2 0 0 1 2-2h3.5M20 12.5V17a2 2 0 0 1-2 2h-3.5M4 12.5V17a2 2 0 0 0 2 2h3.5"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg>
+          </div>
+          <div>
+            <h3>插件市场</h3>
+            <p class="feat__k">extensions marketplace</p>
+          </div>
+        </div>
+        <p>业务系统不必挤在聊天流里：做成插件钉在侧边栏，表格、看板、表单各有各的界面，点开就用。</p>
+        <ul>
+          <li><b>卡片式市场</b>：官方插件与本地二开插件统一陈列</li>
+          <li><b>一键安装</b>：装完即出现在活动栏，无需重启</li>
+          <li><b>脚手架生成</b>：给个场景描述就能产出插件骨架</li>
+          <li>登录态托管：认证一次，所有插件共用会话</li>
+        </ul>
+        <a class="feat__shot" href="assets/screens/extensions.png" target="_blank" rel="noopener" aria-label="查看插件市场界面大图">
+          <img src="assets/screens/extensions.png" alt="插件应用市场：官方与本地二次开发插件卡片，一键安装" loading="lazy" width="1920" height="1253">
+        </a>
+      </article>
+
+      <article class="feat rv">
+        <div class="feat__top">
+          <div class="feat__ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-5 6 5 6M16 6l5 6-5 6M13.5 4l-3 16"/></svg>
+          </div>
+          <div>
+            <h3>脚本库 · 定时任务</h3>
+            <p class="feat__k">rpa tasks / cron</p>
+          </div>
+        </div>
+        <p>探索成功的操作一键固化为脚本任务，进库统一管理；再挂上 cron，日报、巡检、盯盘从此不用人守。</p>
+        <ul>
+          <li><b>固化入库</b>：会话里跑通的流程直接存成任务</li>
+          <li><b>定时执行</b>：cron 循环或一次性定点，界面可视化配置</li>
+          <li><b>运行留痕</b>：每次执行的日志与产物可回看</li>
+          <li>结果自动投递：跑完推微信或桌面通知铃</li>
+        </ul>
+        <a class="feat__shot" href="assets/screens/scripts.png" target="_blank" rel="noopener" aria-label="查看脚本库界面大图">
+          <img src="assets/screens/scripts.png" alt="脚本库界面：任务列表、新建与导入任务、cron 定时配置" loading="lazy" width="1920" height="1253">
+        </a>
+      </article>
+
+      <article class="feat feat--wide rv">
+        <div class="feat__wide">
+          <div>
+            <div class="feat__top">
+              <div class="feat__ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
+              </div>
+              <div>
+                <h3>输出物资产</h3>
+                <p class="feat__k">outputs / 交付归档</p>
+              </div>
+            </div>
+            <p>产出的报告、表格、视频、脚本不再散落在聊天流里：按类别自动归档进抽屉，随时查、随时用。</p>
+            <ul>
+              <li><b>分类计数</b>：文档 / 表格 / 视频 / 脚本一目了然</li>
+              <li><b>行内操作</b>：查看、编辑、删除，不用翻文件夹</li>
+              <li><b>范围标签</b>：区分会话产出与任务产出，交付物不串台</li>
+              <li>一键在系统文件管理器中定位原文件</li>
+            </ul>
+          </div>
+          <a class="feat__shot" href="assets/screens/outputs.png" target="_blank" rel="noopener" aria-label="查看输出物界面大图">
+            <img src="assets/screens/outputs.png" alt="输出物资产界面：按类别分组管理视频、文件、脚本等交付物" loading="lazy" width="1920" height="1253">
+          </a>
         </div>
       </article>
 
