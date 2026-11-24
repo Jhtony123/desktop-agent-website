@@ -128,4 +128,22 @@
       history.replaceState(null, "", id);
     });
   });
+
+  /* ------------------------------------------------------------------
+     6. 宣传视频：播放时保持聚焦态（hover 效果由 CSS 承担）
+     ------------------------------------------------------------------ */
+  var videoFrame = document.getElementById("videoFrame");
+  if (videoFrame) {
+    var promoVideo = videoFrame.querySelector("video");
+    var videoWrap = videoFrame.closest(".video-wrap");
+    if (promoVideo) {
+      var setPlaying = function (on) {
+        videoFrame.classList.toggle("is-playing", on);
+        if (videoWrap) videoWrap.classList.toggle("is-playing", on);
+      };
+      promoVideo.addEventListener("play", function () { setPlaying(true); });
+      promoVideo.addEventListener("pause", function () { setPlaying(false); });
+      promoVideo.addEventListener("ended", function () { setPlaying(false); });
+    }
+  }
 })();
