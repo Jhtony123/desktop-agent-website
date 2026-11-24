@@ -26,3 +26,10 @@ deploy/
 
 # 截图原图（未压缩，站点只用 assets/screens/ 下的优化版）
 picture/
+
+# 影刀参考资料（竞品视频/截图，不入公开仓库）
+参考资料-需排除git/
+legacy-index.html.bak
+
+# Remotion 宣传片工程（node_modules 与素材，不入公开仓库）
+promo-video/

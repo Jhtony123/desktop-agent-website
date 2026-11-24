@@ -50,18 +50,33 @@ desktop-agent-website/
 | 设计系统 | 16 色可点击复制色卡 + token 代码块 |
 | 下载 | 单网盘目录（macOS / Windows 同文件夹）+ 新手教程入口 |
 
-## 设计语言
+## 设计语言（2026-11 重设计）
 
-**Cyber Dark + Acid**：`#050506` 纯黑底 + `#E8FF4A` 荧光黄单主色 + 等宽字体承担代码与元数据 + 细描边低圆角。
+**浅色企业风**：白 / 淡灰紫底 + 珊瑚红品牌色 + 深蓝紫深色治理段 + 悬浮卡片柔和投影。信息架构为价值叙事：定位 slogan → 三步工作法 → 能力 Bento → 产品实拍 Tabs → 可靠执行（深色段）→ 数据条 → 场景 → 宣传片 → 下载。
 
 | 角色 | 值 |
 |---|---|
-| 主色 | `--acid: #E8FF4A` |
-| 页面底 / 卡片面 / 输入底 / 悬浮层 | `#050506` / `#0B0B0D` / `#121214` / `#18181B` |
-| 描边 | `--line: #2A2A30` |
-| 主 / 次 / 弱文字 | `#e6edf3` / `#c5cedd` / `#9eacbe` |
-| 辅色 | cyan `#22d3ee` · ice `#4DE8D0` · violet `#a78bfa` · flare `#FF7A18` · magenta `#FF3D8A` · lime `#6EFF3A` |
-| 主 CTA | 荧光黄底 + `2px #111` 描边 + `3px 3px 0 #000` 硬投影 |
+| 品牌主色 | `--brand: #E8442E`（珊瑚红） |
+| 页面底 / 卡片面 / 次级面 | `#F7F8FC` / `#FFFFFF` / `#F1F2F9` |
+| 深色段渐变 | `#17123A → #2B2470 → #3B2E8F` + 点阵纹理 |
+| 描边 | `--line: #E5E8F2` |
+| 主 / 次 / 弱文字 | `#12142B` / `#3D4360` / `#767D99` |
+| 辅色 | indigo `#4F46E5` · violet `#7C3AED` · cyan `#0EA5E9` · emerald `#10B981` · amber `#F59E0B` |
+| 主 CTA | 珊瑚红渐变 + 柔和彩色投影 |
+
+旧版 Cyber Dark + Acid 样式保留为 `legacy.css`，仅供 `tutorial.html` 使用。
+
+## 宣传视频
+
+`assets/promo-v1.mp4`（44s，1920×1080，9 镜头口播 + 代码合成配乐），由 `promo-video/` Remotion 工程渲染：
+
+```bash
+cd promo-video
+npx remotion studio          # 预览
+npx remotion render Promo out/promo.mp4
+```
+
+口播 TTS 与时间轴脚本在 `promo-video/scripts/`；`promo-video/` 不入公开仓库（见 .gitignore）。
 
 字体走系统本地栈（`PingFang SC` / `Segoe UI` / `Cascadia Mono`），**刻意不引 Google Fonts** —— 境内加载会阻塞首屏渲染。
 
